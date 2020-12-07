@@ -1,8 +1,15 @@
 import pandas as pd
 
 
-colnames=['Label', 'Id', 'Date', 'Query', 'Author', 'Tweet']
-df=pd.read_csv('D:\\okul\\DogalDilIsleme\\trainingTweetData\\trainingTweetData.csv', encoding = "ISO-8859-1", names=colnames, header=None )
+tweet_data = pd.read_csv('dataset\\train_text.txt', sep="\n", header=None, )
+tweet_data.columns = ["tweets"]
+print(tweet_data)
+labels_data = pd.read_csv('dataset\\train_labels.txt', sep="\n", header=None, )
+labels_data.columns = ["labels"]
+labels = labels_data["labels"]
+tweet_data = tweet_data.join(labels)
+print(tweet_data)
+
 
 def remove_unnecessary_columns(df, columns):
     for col in columns:
